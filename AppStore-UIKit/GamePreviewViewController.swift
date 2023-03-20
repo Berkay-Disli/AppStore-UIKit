@@ -110,9 +110,7 @@ class GamePreviewViewController: UIViewController {
             mainTitleLabel.topAnchor.constraint(equalTo: footerGenreLabel.bottomAnchor),
             mainTitleLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 15),
             mainTitleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-
-
-            
+ 
         ]
         
         NSLayoutConstraint.activate(constraints)

@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(HomeFeedTableViewCell.self, forCellReuseIdentifier: HomeFeedTableViewCell.identifier)
+        table.register(HomeFeedAlternateTableViewCell.self, forCellReuseIdentifier: HomeFeedAlternateTableViewCell.identifier)
         return table
     }()
     
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
         
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
+        
         
         
         
@@ -71,12 +73,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeFeedTableViewCell.identifier, for: indexPath) as? HomeFeedTableViewCell else { return UITableViewCell() }
+        if indexPath.row != 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeFeedTableViewCell.identifier, for: indexPath) as? HomeFeedTableViewCell else { return UITableViewCell() }
+            
+            cell.configure(with: cells[indexPath.row])
         
-        cell.configure(with: cells[indexPath.row])
-    
-        
-        return cell
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeFeedAlternateTableViewCell.identifier, for: indexPath) as? HomeFeedAlternateTableViewCell else { return UITableViewCell() }
+            
+            
+            
+            
+            return cell
+        }
         
     }
     
